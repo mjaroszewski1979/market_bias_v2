@@ -3,8 +3,8 @@ import imghdr
 from email.message import EmailMessage
 from os import environ
 
-email_address = 'mjaroherokuapp@gmail.com'
-email_password = 'mjaroherkuapp1234'
+email_address = environ.get('EMAIL_ADDRESS')
+email_password = environ.get('EMAIL_PASSWORD')
 
 
 def send_mail(email):
