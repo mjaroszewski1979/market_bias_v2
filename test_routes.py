@@ -2,7 +2,7 @@ from flask import current_app
 import unittest
 import re
 from run import create_app
-from http import HTTPStatus
+
 
 
 app = create_app()
