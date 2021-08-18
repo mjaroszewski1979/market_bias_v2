@@ -1,4 +1,3 @@
-from flask import current_app
 import unittest
 import re
 from run import create_app
@@ -12,7 +11,7 @@ class FlaskTestCase(unittest.TestCase):
 
     # Ensures that the application instance exists
     def test_app_exists(self):
-        self.assertFalse(current_app is None)
+        self.assertIsNotNone(app)
 
     # Ensures that index page loads correctly
     def test_index(self):
