@@ -9,6 +9,8 @@ app = create_app()
 class FlaskTestCase(unittest.TestCase):
 
     # Indis
+
+    # Ensures that value of calculated indicators is not none
     def test_adx(self):
         self.assertFalse(indis.adx is None)
 
@@ -45,11 +47,22 @@ class FlaskTestCase(unittest.TestCase):
     def test_wma(self):
         self.assertFalse(indis.wma is None)
 
+    # Ensures that number of items in results match the given values
     def test_indis_results_values(self):
         self.assertEqual(len(indis.results), len(indis.values))
 
+    # Ensures that number of items in results match the given names
+    def test_indis_results_names(self):
+        self.assertEqual(len(indis.results), len(indis.names))
+    
+    # Ensures that number of items in values match the given names
+    def test_indis_values_names(self):
+        self.assertEqual(len(indis.values), len(indis.names))
+
 
     # Oscs
+
+    # Ensures that value of calculated oscilators is not none
     def test_cci(self):
         self.assertFalse(oscs.cci is None)
 
@@ -71,10 +84,21 @@ class FlaskTestCase(unittest.TestCase):
     def test_willr(self):
         self.assertFalse(oscs.willr is None)
 
+    # Ensures that number of items in results match the given values
     def test_oscs_results_values(self):
         self.assertEqual(len(oscs.results), len(oscs.values))
 
+    # Ensures that number of items in results match the given names
+    def test_oscs_results_names(self):
+        self.assertEqual(len(oscs.results), len(oscs.names))
+    
+    # Ensures that number of items in values match the given names
+    def test_oscs_values_names(self):
+        self.assertEqual(len(oscs.values), len(oscs.names))
+
     # Patts
+
+    # Ensures that value of calculated candlestick patterns is not none
     def test_baby(self):
         self.assertFalse(patts.baby is None)
 
@@ -183,18 +207,10 @@ class FlaskTestCase(unittest.TestCase):
     def test_u_gap(self):
         self.assertFalse(patts.u_gap is None)
 
+    # Ensures that number of items in results match the given names
     def test_patts_results_names(self):
         self.assertEqual(len(patts.results), len(patts.names))
-
     
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
-
