@@ -1,29 +1,13 @@
 import talib
-import datetime
-import numpy as np
-import pandas_datareader as pdr
-import pandas as pd
-from pandas_datareader._utils import RemoteDataError
+from utilities import get_trend_data
 
-def get_data(start = datetime.datetime(2020, 1, 1), end = datetime.datetime.now(), symbol='^GSPC'):
-    items = {}
-    try:
-        data = pdr.get_data_yahoo(symbol, start, end)
-        items['high'] = data['High']
-        items['low'] = data['Low']
-        items['open'] = data['Open']
-        items['close'] = data['Adj Close']
-        items['last_close'] = data['Adj Close'][-1]
-        items['error'] = None
-    except RemoteDataError:
-        items['error'] = 'Fetching data failed due to an error on the yahoo finance server. Please come back later.'
-        
-    return items
 
-data = get_data()
+
+data = get_trend_data()
 
 class YahooData:
     def __init__(self):
+        self.data = data['data']
         self.high = data['high']
         self.low = data['low']
         self.open = data['open']
@@ -35,6 +19,7 @@ class YahooData:
 class Indis(YahooData):
     def __init__(self):
         YahooData.__init__(self)
+        
         adx = talib.ADX(self.high, self.low, self.close, 14)
         self.adx = adx[-1]
         self.upperband, self.middleband, self.lowerband = talib.BBANDS(self.close, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
@@ -53,13 +38,9 @@ class Indis(YahooData):
         self.scores = [self.bblow, self.dema, self.ema, self.ht, self.kama, self.fama, self.sar, 
                self.sma, self.t3, self.trima, self.wma]
 
-        self.results = []
-        for score in self.scores:
-            self.results.append(score[-1])
+        self.results = [ score[-1] for score in self.scores ]
             
-        self.values = []
-        for _ in range(len(self.results)):
-            self.values.append(self.last_close)
+        self.values = [ self.last_close for _ in range(len(self.results)) ]
 
         self.names = ['Bollinger Bands', 'Double Exponential Moving Average', 'Exponential Moving Average','Hilbert Transform - Instantaneous Trendline', 'Kaufman Adaptive Moving Average',
             'MESA Adaptive Moving Average', 'Parabolic SAR', 'Simple Moving Average', 'Triple Exponential Moving Average', 'Triangular Moving Average', 'Weighted Moving Average']
@@ -68,6 +49,7 @@ class Indis(YahooData):
 class Patts(YahooData):
     def __init__(self):
         YahooData.__init__(self)
+        
         self.baby = talib.CDLABANDONEDBABY(self.open, self.high, self.low, self.close, penetration=0)
         self.belt = talib.CDLBELTHOLD(self.open, self.high, self.low, self.close)
         self.b_away = talib.CDLBREAKAWAY(self.open, self.high, self.low, self.close)
@@ -110,9 +92,7 @@ class Patts(YahooData):
                 self.mor_doji, self.mor_star, self.piercing, self.three_met, self.sep_lines, self.stick, self.takuri, self.tasuki, self.inside_up, self.tlstrike, 
                 self.south, self.soldiers, self.outside_up, self.tristar, self.river, self.u_gap]
 
-        self.results = []
-        for score in self.scores:
-            self.results.append(score[-1])
+        self.results = [ score[-1] for score in self.scores ]
             
         self.names = ['Abandoned Baby', 'Belt-hold', 'Breakaway', 'Closing Marubozu', 'Concealing Baby Swallow', 'Counterattack', 'Dragonfly Doji', 'Engulfing Pattern', 'Up-gap Side-by-Side White Lines',
             'Hammer', 'Harami', 'Harami Cross', 'Hikkake', 'Homing Pigeon', 'Kicking', 'Ladder Bottom', 'Long Line', 'Marubozu', 'Matching Low', 'Mat Hold', 'Morning Doji Star', 'Morning Star',
@@ -122,6 +102,7 @@ class Patts(YahooData):
 class Oscs(YahooData):
     def __init__(self):
         YahooData.__init__(self)
+
         self.cci = talib.CCI(self.high, self.low, self.close, self.period)
         self.macd, self.macdsignal, self.macdhist = talib.MACD(self.close, fastperiod=12, slowperiod=26, signalperiod=9)
         self.macd = self.macdhist
@@ -134,10 +115,8 @@ class Oscs(YahooData):
 
         self.scores = [self.cci, self.macd, self.mom, self.roc, self.rsi, self.stoch, self.willr]
 
-        self.results = []
-        for score in self.scores:
-            self.results.append(score[-1])
-    
+        self.results = [ score[-1] for score in self.scores]
+
         self.values = [0, 0, 100, 0, 50, 50, -50]
 
         self.names = ['Commodity Channel Index', 'MACD', 'Momentum', 'Rate of Change', 'Relative Strength Index', 'Stochastic', "Williams' %R"]
@@ -145,4 +124,3 @@ class Oscs(YahooData):
 indis = Indis()
 patts = Patts()
 oscs = Oscs()
-
