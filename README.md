@@ -81,11 +81,14 @@
 
 ----------------------------------------------------------------
 
-![caption](https://github.com/mjaroszewski1979/market_bias_v1/blob/main/market_bias.gif) 
-
 ### Code coverage
 
 <img src="https://github.com/mjaroszewski1979/market_bias_v2/blob/main/market_bias_coverage.png">
+
+
+
+![caption](https://github.com/mjaroszewski1979/market_bias_v1/blob/main/market_bias.gif) 
+
 
 
   Live | Code | Technologies
