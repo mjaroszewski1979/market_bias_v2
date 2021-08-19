@@ -2,10 +2,10 @@
 
 #### This is a Python/Flask application powered by Pandas and Plotly. It is designed to download historical data of S&P 500 from Yahoo Finance API using Pandas Datareader and applies Technical Analysis Library tools like: 
 
-* Trend filter:
+* Trend Filter:
    * Average Directional Movement Index 
 
-* Trading indicators: 
+* Trading Indicators: 
    * Bollinger Bands
    * Double Exponential Moving Average
    * Exponential Moving Average
@@ -81,11 +81,11 @@
 
 ----------------------------------------------------------------
 
-### Code coverage
+### Code Coverage
 
 <img src="https://github.com/mjaroszewski1979/market_bias_v2/blob/main/market_bias_coverage.png">
 
-
+----------------------------------------------------------------
 
 ![caption](https://github.com/mjaroszewski1979/market_bias_v1/blob/main/market_bias.gif) 
 
