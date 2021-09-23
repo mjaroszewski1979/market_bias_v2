@@ -11,15 +11,18 @@ from os import environ
 email_address = environ.get('EMAIL_ADDRESS')
 email_password = environ.get('EMAIL_PASSWORD')
 
-
+# Sending emails with gmail using smtplib
 def send_mail(email):
     message = "Your free ebook from Market Bias"
+    
+    # Creating a message object
     msg = EmailMessage()
     msg['Subject'] = 'Free Ebook'
     msg['From'] = 'Market Bias'
     msg['To'] = email
     msg.set_content(message)  
 
+    # Using context manager to open and attach pdf file to email message
     with open('MarketBiasEbook.pdf', 'rb') as f:
         file_data = f.read()
         file_type = imghdr.what(f.name)
@@ -31,6 +34,7 @@ def send_mail(email):
         smtp.login(email_address, email_password)
         smtp.send_message(msg)
 
+# Using Yahoo Finance API to fetch S&P 500 historical data
 def get_trend_data(start = datetime.datetime(2020, 1, 1), end = datetime.datetime.now(), symbol='^GSPC'):
     items = {}
     try:
@@ -47,6 +51,7 @@ def get_trend_data(start = datetime.datetime(2020, 1, 1), end = datetime.datetim
         
     return items
 
+# Using Yahoo Finance API to fetch international stock indices historical data
 def get_strategies_data(start = datetime.datetime(2020, 1, 1), end = datetime.datetime.now(), symbol=['^GSPC', '^IXIC', '^DJI', '^N225', '^FCHI', '^GDAXI', '^RUT', 'EPOL', 'EWC', 'TUR', '^NSEI', 'MCHI', 'EWY', 'EWT', 'EWZ', 'EWA', 'EWW', 'EWL', 'EWN', 'EZA', 'EWU']):
     try:
         data = pdr.get_data_yahoo(symbol, start, end)
