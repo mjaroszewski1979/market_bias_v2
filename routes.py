@@ -32,11 +32,13 @@ def success():
     if request.method == "POST":
         name = request.form['name']
         email = request.form['email']
+        
+        # Moving send_mail function to a background thread
         t1 = threading.Thread(target=send_mail, args=[email])
         t1.start()
         return render_template('success_min.html', name=name, email=email)
 
-    
+# Custom error pages    
 @main.app_errorhandler(404)
 def not_found(e):
     return render_template('404_min.html'), 404
