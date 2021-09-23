@@ -2,6 +2,7 @@ from flask import Flask, Blueprint
 import jinja2
 from routes import main
 
+# Creating an application object using factory pattern
 def create_app(config_file='settings.py'):
     app = Flask(__name__)
     
