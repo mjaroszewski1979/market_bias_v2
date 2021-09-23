@@ -2,7 +2,7 @@ from utilities import get_strategies_data
 from trend import indis
 
 
-
+# Checking for connection error before proceeding further with object creation
 if indis.error == None:
 
     class Indices:
