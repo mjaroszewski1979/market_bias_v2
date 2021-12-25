@@ -87,7 +87,7 @@
 
 ----------------------------------------------------------------
 
-   ![caption](https://github.com/mjaroszewski1979/market_bias_v1/blob/main/market_bias_mockup.png) 
+   ![caption](https://github.com/mjaroszewski1979/market_bias_v2/blob/main/market_bias_mockup.png) 
 
   Live | Code | Docker | Technologies
   ---- | ---- | ------ |------------
