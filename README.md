@@ -81,7 +81,14 @@
 
 ----------------------------------------------------------------
 
-### Code Coverage
+### Code Coverage:
+* Selenium and unit tests combined
+
+```
+coverage run -p test_routes.py && coverage run -p test_strategies.py && coverage run -p test_trend.py && coverage run -p tests.py && coverage combine && coverage html
+
+```
+
 
 <img src="https://github.com/mjaroszewski1979/market_bias_v2/blob/main/cov_report.png">
 
