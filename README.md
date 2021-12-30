@@ -83,7 +83,7 @@
 
 ### Code Coverage
 
-<img src="https://github.com/mjaroszewski1979/market_bias_v2/blob/main/market_bias_coverage.png">
+<img src="https://github.com/mjaroszewski1979/market_bias_v2/blob/main/cov_report.png">
 
 ----------------------------------------------------------------
 
