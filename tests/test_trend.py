@@ -1,35 +1,45 @@
+# Import the unittest module for creating and running tests
 import unittest
+# Import the mock module from unittest for creating mock objects
 from unittest import mock
+# Import the pandas library for data manipulation and analysis
 import pandas
+# Import the numpy library for numerical operations
 import numpy
+# Import the RemoteDataError exception from pandas_datareader
 from pandas_datareader._utils import RemoteDataError
+# Import the sys module for system-specific parameters and functions
 import sys
+# Import the os module for interacting with the operating system
 import os
 
 
-
+# Adjust the system path to include the parent directory of the current file
 current = os.path.dirname(os.path.realpath(__file__))  
 parent = os.path.dirname(current)  
 sys.path.append(parent)
 
+# Import the indis, oscs, and patts modules from the trend package
 from trend import indis, oscs, patts
 
 
 
 class TrendTestCase(unittest.TestCase):
-
-
+    """
+    Test case for the trend module, including data validation, type checking,
+    and ensuring that calculated values are not None.
+    """
 
     # Ensures that returned value is not none
     def test_get_trend_data(self):
         self.assertIsNotNone(indis.data)
 
-    # Ensures that get_trend_data function works correctly
+    # Ensures that the get_trend_data function handles RemoteDataError correctly
     @mock.patch('trend.data', side_effect=Exception(RemoteDataError))
     def test_get_trend_data_error(self, yahoo):
         self.assertRaises(Exception, yahoo)
 
-    # Ensures that get_trend_data function returns the right data type
+    # Ensures that the get_trend_data function returns the correct data type
     def test_get_trend_data_type(self):
         self.assertIs(type(indis.data), pandas.core.frame.DataFrame)
 
@@ -50,7 +60,7 @@ class TrendTestCase(unittest.TestCase):
 
     # Indis
 
-    # Ensures that value of calculated indicators is not none
+    # Ensures that the value of calculated indicators is not None
     def test_adx(self):
         self.assertIsNotNone(indis.adx)
 
@@ -87,22 +97,22 @@ class TrendTestCase(unittest.TestCase):
     def test_wma(self):
         self.assertIsNotNone(indis.wma)
 
-    # Ensures that number of items in results match the given values
+    # Ensures that the number of items in results matches the given values
     def test_indis_results_values(self):
         self.assertEqual(len(indis.results), len(indis.values))
 
-    # Ensures that number of items in results match the given names
+    # Ensures that the number of items in results matches the given names
     def test_indis_results_names(self):
         self.assertEqual(len(indis.results), len(indis.names))
     
-    # Ensures that number of items in values match the given names
+    # Ensures that the number of items in values matches the given names
     def test_indis_values_names(self):
         self.assertEqual(len(indis.values), len(indis.names))
 
 
     # Oscs
 
-    # Ensures that value of calculated oscilators is not none
+    # Ensures that the value of calculated oscillators is not None
     def test_cci(self):
         self.assertIsNotNone(oscs.cci)
 
@@ -124,21 +134,21 @@ class TrendTestCase(unittest.TestCase):
     def test_willr(self):
         self.assertIsNotNone(oscs.willr)
 
-    # Ensures that number of items in results match the given values
+    # Ensures that the number of items in results matches the given values
     def test_oscs_results_values(self):
         self.assertEqual(len(oscs.results), len(oscs.values))
 
-    # Ensures that number of items in results match the given names
+    # Ensures that the number of items in results matches the given names
     def test_oscs_results_names(self):
         self.assertEqual(len(oscs.results), len(oscs.names))
     
-    # Ensures that number of items in values match the given names
+    # Ensures that the number of items in values matches the given names
     def test_oscs_values_names(self):
         self.assertEqual(len(oscs.values), len(oscs.names))
 
     # Patts
 
-    # Ensures that value of calculated candlestick patterns is not none
+    # Ensures that the value of calculated candlestick patterns is not None
     def test_baby(self):
         self.assertIsNotNone(patts.baby)
 
@@ -247,10 +257,10 @@ class TrendTestCase(unittest.TestCase):
     def test_u_gap(self):
         self.assertIsNotNone(patts.u_gap)
 
-    # Ensures that number of items in results match the given names
+    # Ensures that the number of items in results matches the given names
     def test_patts_results_names(self):
         self.assertEqual(len(patts.results), len(patts.names))
     
-
+# Run the test cases
 if __name__ == '__main__':
     unittest.main()
