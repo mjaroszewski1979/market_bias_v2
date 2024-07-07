@@ -1,13 +1,16 @@
+# Importing TA-Lib (Technical Analysis Library) for advanced financial technical analysis indicators and patterns.
 import talib
+ # Importing a utility function get_trend_data() from the utilities module to fetch trend data.
 from utilities import get_trend_data
 
 
-
+# Fetching trend data using a utility function
 data = get_trend_data()
 
-# Creating a base class
+# Creating a base class to hold Yahoo Finance data attributes
 class YahooData:
     def __init__(self):
+        # Initialize attributes with fetched data
         self.data = data['data']
         self.high = data['high']
         self.low = data['low']
@@ -17,12 +20,12 @@ class YahooData:
         self.error = data['error']
         self.period = 200
 
-# Creating indicators class which inherits from YahooData
+# Creating a subclass to calculate various technical indicators
 class Indis(YahooData):
     def __init__(self):
         YahooData.__init__(self)
         
-        # Using Technical Analysis Library to create an extensive list of trading indicators
+        # Using Technical Analysis Library (TA-Lib) to compute indicators
         adx = talib.ADX(self.high, self.low, self.close, 14)
         self.adx = adx[-1]
         self.upperband, self.middleband, self.lowerband = talib.BBANDS(self.close, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
@@ -38,19 +41,19 @@ class Indis(YahooData):
         self.wma = talib.WMA(self.close, self.period)
         self.trima = talib.TRIMA(self.close, self.period)
 
+        # Aggregate scores and last readings of indicators
         self.scores = [self.bblow, self.dema, self.ema, self.ht, self.kama, self.fama, self.sar, 
                self.sma, self.t3, self.trima, self.wma]
-
-        # List of indicators last readings
+        
         self.results = [ score[-1] for score in self.scores ]
         
         self.values = [ self.last_close for _ in range(len(self.results)) ]
 
-        # List of indicators names
+        # List of indicator names
         self.names = ['Bollinger Bands', 'Double Exponential Moving Average', 'Exponential Moving Average','Hilbert Transform - Instantaneous Trendline', 'Kaufman Adaptive Moving Average',
             'MESA Adaptive Moving Average', 'Parabolic SAR', 'Simple Moving Average', 'Triple Exponential Moving Average', 'Triangular Moving Average', 'Weighted Moving Average']
 
-# Creating chart patterns class which inherits from YahooData
+# Creating a subclass to detect candlestick patterns
 class Patts(YahooData):
     def __init__(self):
         YahooData.__init__(self)
@@ -93,6 +96,7 @@ class Patts(YahooData):
         self.tristar = talib.CDLTRISTAR(self.open, self.high, self.low, self.close)
         self.u_gap = talib.CDLXSIDEGAP3METHODS(self.open, self.high, self.low, self.close)
 
+        # Aggregate scores and last readings of candlestick patterns
         self.scores = [self.baby, self.belt, self.b_away, self.closing, self.swallow, self.counter, self.dragon, self.engulfing, self.gap, self.hammer, 
                 self.harami, self.har_cross, self.hikkake, self.pigeon, self.kick, self.ladder, self.long_line, self.marubozu, self.ma_low, self.mat_hold,
                 self.mor_doji, self.mor_star, self.piercing, self.three_met, self.sep_lines, self.stick, self.takuri, self.tasuki, self.inside_up, self.tlstrike, 
@@ -100,18 +104,18 @@ class Patts(YahooData):
 
         self.results = [ score[-1] for score in self.scores ]
             
-        # List of candlestick patterns names
+        # List of candlestick pattern names
         self.names = ['Abandoned Baby', 'Belt-hold', 'Breakaway', 'Closing Marubozu', 'Concealing Baby Swallow', 'Counterattack', 'Dragonfly Doji', 'Engulfing Pattern', 'Up-gap Side-by-Side White Lines',
             'Hammer', 'Harami', 'Harami Cross', 'Hikkake', 'Homing Pigeon', 'Kicking', 'Ladder Bottom', 'Long Line', 'Marubozu', 'Matching Low', 'Mat Hold', 'Morning Doji Star', 'Morning Star',
             'Piercing', 'Rising Three Methods', 'Separating Lines', 'Stick Sandwich', 'Takuri', 'Tasuki Gap', 'Three Inside Up', 'Three-Line Strike', 'Three Stars In The South',
             'Three Advancing White Soldiers', 'Three Outside Up/Down','Tristar', 'Unique 3 River', 'Upside Gap Three Methods']
 
-# Creating oscillators class which inherits from YahooData
+# Creating a subclass to analyze oscillators
 class Oscs(YahooData):
     def __init__(self):
         YahooData.__init__(self)
 
-        # Using Technical Analysis Library to create an extensive list of oscillators
+        # Using TA-Lib to compute oscillators
         self.cci = talib.CCI(self.high, self.low, self.close, self.period)
         self.macd, self.macdsignal, self.macdhist = talib.MACD(self.close, fastperiod=12, slowperiod=26, signalperiod=9)
         self.macd = self.macdhist
@@ -122,8 +126,8 @@ class Oscs(YahooData):
         self.stoch = self.slowd
         self.willr = talib.WILLR(self.high, self.low, self.close, 14)
 
+        # Aggregate scores and last readings of oscillators
         self.scores = [self.cci, self.macd, self.mom, self.roc, self.rsi, self.stoch, self.willr]
-
         self.results = [ score[-1] for score in self.scores]
 
         # List of trading oscillators most commonly used values to compare against
@@ -132,6 +136,7 @@ class Oscs(YahooData):
         # List of trading oscillators names
         self.names = ['Commodity Channel Index', 'MACD', 'Momentum', 'Rate of Change', 'Relative Strength Index', 'Stochastic', "Williams' %R"]
 
+# Creating instances of each subclass to perform calculations
 indis = Indis()
 patts = Patts()
 oscs = Oscs()
