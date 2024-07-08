@@ -65,10 +65,6 @@
    * Unique 3 River
    * Upside Gap Three Methods
 
-#### One of the standout features of this application is its interactive visualizations, which are made possible by Plotly. Users can easily view market bias and explore different trends. In addition, the website also offers a simple and profitable trading strategy known as Dual Momentum. The application also includes a table of various stock indices, grouped by their one-year rate of change. This table is updated daily and uses historical data sourced from Yahoo Finance API.
-
-#### To handle data from the contact form, the application uses Python's Smtplib. When a user submits the form, the application will automatically send a free Ebook in PDF format to the email address provided. Additionally, thanks to Flask's abort() function, custom error pages are displayed to the user in the event of an exception.
-
 ### Features
 * Data Fetching: Retrieves financial data using the Yahoo Finance API via Pandas Datareader.
 * Technical Analysis:
