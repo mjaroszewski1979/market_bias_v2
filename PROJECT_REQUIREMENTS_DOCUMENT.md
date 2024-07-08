@@ -42,7 +42,40 @@ The Switzerland MSCI index data must be of the correct type. | When accessing th
 The Netherlands MSCI index data must be of the correct type. | When accessing the Netherlands MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_nl_type
 The South Africa MSCI index data must be of the correct type. | When accessing the South Africa MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_safr_type
 The UK MSCI index data must be of the correct type. | When accessing the UK MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_uk_type
-
+The trend data must be available. | When accessing the trend data. | The trend data should not be None. | test_get_trend_data
+The get_trend_data function must handle RemoteDataError scenarios correctly. | When a RemoteDataError occurs during data retrieval. | An exception should be raised. | test_get_trend_data_error
+The get_trend_data function must return data of the correct type. | When the data is retrieved from the trend module. | The data should be of type pandas.core.frame.DataFrame. | test_get_trend_data_type
+The high data must be of the correct type. | When accessing the high data from trend. | The data should be of type pandas.core.series.Series. | test_get_trend_data_type_high
+The low data must be of the correct type. | When accessing the low data from trend. | The data should be of type pandas.core.series.Series. | test_get_trend_data_type_low
+The open data must be of the correct type. | When accessing the open data from trend. | The data should be of type pandas.core.series.Series. | test_get_trend_data_type_open
+The close data must be of the correct type. | When accessing the close data from trend. |  The data should be of type pandas.core.series.Series. | test_get_trend_data_type_close
+The last_close data must be of the correct type. | When accessing the last_close data from trend. | The data should be of type numpy.float64. | test_get_trend_data_type_last_close
+The ADX indicator value must not be None. | When calculating the ADX indicator. | The ADX value should not be None. | test_adx
+The BBLOW indicator value must not be None. | When calculating the BBLOW indicator. | The BBLOW value should not be None. | test_bblow
+The DEMA indicator value must not be None. | When calculating the DEMA indicator. | The DEMA value should not be None. | test_dema
+The EMA indicator value must not be None. | When calculating the EMA indicator. | The EMA value should not be None. | test_ema
+The HT indicator value must not be None. | When calculating the HT indicator. | The HT value should not be None. | test_ht
+The KAMA indicator value must not be None. | When calculating the KAMA indicator. | The KAMA value should not be None. | test_kama
+The FAMA indicator value must not be None. |  When calculating the FAMA indicator. | The FAMA value should not be None. | test_fama
+The SAR indicator value must not be None. | When calculating the SAR indicator. | The SAR value should not be None. | test_sar
+The SMA indicator value must not be None. | When calculating the SMA indicator. | The SMA value should not be None. | test_sma
+The T3 indicator value must not be None. | When calculating the T3 indicator. | The T3 value should not be None. | test_t3
+The TRIMA indicator value must not be None. | When calculating the TRIMA indicator. | The TRIMA value should not be None. | test_trima
+The WMA indicator value must not be None. | When calculating the WMA indicator. | The WMA value should not be None. | test_wma
+The number of items in the results must match the given values. | When validating the results of indicators. | The length of indis.results should equal the length of indis.values. | test_indis_results_values
+The number of items in the results must match the given names. | When validating the results of indicators. | The length of indis.results should equal the length of indis.names. | test_indis_results_names
+The number of items in values must match the given names. | When validating the values of indicators. | The length of indis.values should equal the length of indis.names. | test_indis_values_names
+The CCI oscillator value must not be None. | When calculating the CCI oscillator. | The CCI value should not be None. | test_cci
+The MACD oscillator value must not be None. | When calculating the MACD oscillator. | The MACD value should not be None. | test_macd
+The MOM oscillator value must not be None. | When calculating the MOM oscillator. | The MOM value should not be None. | test_mom
+The ROC oscillator value must not be None. | When calculating the ROC oscillator. | The ROC value should not be None. | test_roc
+The RSI oscillator value must not be None. | When calculating the RSI oscillator. | The RSI value should not be None. | test_rsi
+The STOCH oscillator value must not be None. | When calculating the STOCH oscillator. | The STOCH value should not be None. | test_stoch
+The WILLR oscillator value must not be None. | When calculating the WILLR oscillator. | The WILLR value should not be None. | test_willr
+The number of items in the results must match the given values. | When validating the results of oscillators. | The length of oscs.results should equal the length of oscs.values. | test_oscs_results_values
+The number of items in the results must match the given names. | When validating the results of oscillators. | The length of oscs.results should equal the length of oscs.names. | test_oscs_results_names
+The number of items in values must match the given names. | When validating the values of oscillators. | The length of oscs.values should equal the length of oscs.names. | test_oscs_values_names 
+The number of items in the results must match the given names. | When validating the results of candlestick patterns. | The length of patts.results should equal the length of patts.names. | test_patts_results_names
 
 ### Selenium Tests
 
