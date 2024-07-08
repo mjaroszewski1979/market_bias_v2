@@ -42,3 +42,10 @@ The Switzerland MSCI index data must be of the correct type. | When accessing th
 The Netherlands MSCI index data must be of the correct type. | When accessing the Netherlands MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_nl_type
 The South Africa MSCI index data must be of the correct type. | When accessing the South Africa MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_safr_type
 The UK MSCI index data must be of the correct type. | When accessing the UK MSCI index data from indices. | The data should be of type numpy.float64. | test_indices_uk_type
+
+
+### Selenium Tests
+
+Requirement | Condition | Expected Outcome | Test Case
+----------- | --------- | ---------------- | ---------
+The application instance must exist. | When the application is initialized. | The application instance should not be None. | test_app_exists
