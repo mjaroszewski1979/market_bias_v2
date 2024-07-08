@@ -81,4 +81,18 @@ The number of items in the results must match the given names. | When validating
 
 Requirement | Condition | Expected Outcome | Test Case
 ----------- | --------- | ---------------- | ---------
-The application instance must exist. | When the application is initialized. | The application instance should not be None. | test_app_exists
+The page title must match "Home - Market Bias". | When the Home page is loaded. | The title should be "Home - Market Bias". | is_title_matches
+The top heading element must contain the expected text. | When the Home page is loaded. | The heading text should include "The Big Picture - Macro Perspective on the Capital Markets". | is_top_heading_displayed
+The About link must navigate to the About page. | When the About link is clicked. | The title should be "About - Market Bias". | is_about_link_works
+The logo link must navigate to the Home page. | When the logo link is clicked. | The title should be "Home - Market Bias". | is_logo_link_works
+The Strategies link must navigate to the Strategies page. | When the Strategies link is clicked. | The title should be "Strategies - Market Bias". | is_strategies_link_works
+The Contact link must navigate to the Contact page. | When the Contact link is clicked. | The title should be "Contact - Market Bias". | is_contact_link_works
+The page title must match "About - Market Bias". | When the About page is loaded. | The title should be "About - Market Bias". | is_title_matches
+The About heading element must contain the expected text. | When the About page is loaded. | The heading text should include "Technical Analysis - The Forecasting of Future Financial Price Movements". | is_about_heading_displayed
+The page title must match "Strategies - Market Bias". | When the Strategies page is loaded. | The title should be "Strategies - Market Bias". | is_title_matches
+The Strategies heading element must contain the expected text. | When the Strategies page is loaded. | The heading text should include "Momentum Investing - Buying Recent Stock Winners". | is_strategies_heading_displayed
+The page title must match "Contact - Market Bias". | When the Contact page is loaded. | The title should be "Contact - Market Bias". | is_title_matches
+The Contact heading element must contain the expected text. | When the Contact page is loaded. | The heading text should include "How to Achieve Success in Financial Markets". | is_contact_heading_displayed
+The contact form must be submitted successfully. | When valid data is entered and the form is submitted. | The title should be "Success - Market Bias". | is_contact_form_works
+The page title must match "Page Not Found - Market Bias". | When the Error page is loaded. | The title should be "Page Not Found - Market Bias". | is_title_matches
+The error message element must contain the expected text. | When the Error page is loaded. | The error message text should include "Sorry, we can’t find the website you were looking for." | is_error_msg_displayed
